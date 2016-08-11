@@ -2,9 +2,9 @@
 
 <Context>
 
-  <Resource name="jdbc/focozero" auth="Container" type="javax.sql.DataSource"
+  <Resource name="jdbc/api" auth="Container" type="javax.sql.DataSource"
                maxActive="50" maxIdle="30" maxWait="10000"
-               username="root" password="gustavo" 
+               username="root" password="" 
                driverClassName="com.mysql.jdbc.Driver"
                url="jdbc:mysql://localhost:3306/api"/>
 
