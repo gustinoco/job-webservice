@@ -9,5 +9,9 @@
 	</definition>
         <definition name="cadastrar" extends="base.definition">
 		<put-attribute name="body" value="/WEB-INF/views/usuario/cadastrar.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="apresentacao" extends="base.definition">
+		<put-attribute name="body" value="/WEB-INF/views/usuario/apresentacao.jsp"></put-attribute>
 	</definition>	
 </tiles-definitions>
