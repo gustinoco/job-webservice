@@ -22,9 +22,14 @@ public class UsuarioService {
 	public TransactionStatus insert(Usuario usuario) {
 		TransactionStatus ts = new TransactionStatus();
 		try {
+			if(usuario.getNota() == -1){
+				ts.setStatus(false);
+				ts.setDescricao("Problema");	
+			}else{
 			new UsuarioDao().insert(usuario);
 			ts.setStatus(true);
 			ts.setDescricao("Sucesso na insercao");
+			}
 		} catch (Exception e) {
 			ts.setStatus(false);
 			ts.setDescricao("Deu problema : "+e.getMessage());

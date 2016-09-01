@@ -3,10 +3,11 @@
 	<div class="container">
 		<h1>TESTE</h1>
 
-		<input class="form-control" id="nome" maxlength="10" type="text" /> 
-		<input class="form-control" id="nota" maxlength="5" type="number" />
+		Nome: <input class="form-control" id="nome" maxlength="10" type="text" /> 
+		Nota: <input class="form-control" id="nota" maxlength="5" type="number" />
 
 		<button onclick="insert()" id="add" class="btn ">Inserir</button>
+		<button onclick="insertErro()" id="add" class="btn ">Inserir com erro</button>
 		
 		<a href="./" id="add" class="btn">Voltar</a>
 	</div>
@@ -23,6 +24,27 @@
     return json;
   }
 
+  
+  function insertErro() {
+	    json = '{"nome":"Gustsavo","idade":33}';
+	    $.ajax({
+	      url: 'http://localhost:8080/API/Usuario/Insert',
+	      type: 'POST',      
+	      dataType: 'json',
+	      data: json,
+	      contentType: "application/json",
+	      success: function(data) {
+	        if (data.status) {
+	          alert("Mensagem do WebService: " + data.descricao);
+	        }else{
+	        	alert("Erro no WS: " + data.descricao)
+	        }
+
+	      },  error: function (error) {
+	          alert('Erro encontrado; ' + error.statusText);
+	      }
+	    });
+	  }
   function insert() {
     var json = getJson();
     $.ajax({
@@ -34,8 +56,12 @@
       success: function(data) {
         if (data.status) {
           alert("Mensagem do WebService: " + data.descricao);
+        }else{
+        	alert("Erro no WS: " + data.descricao)
         }
 
+      },  error: function (error) {
+    	  alert('Erro encontrado; ' + error.statusText);
       }
     });
   }
