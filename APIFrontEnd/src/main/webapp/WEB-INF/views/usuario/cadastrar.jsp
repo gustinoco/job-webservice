@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 	<div class="container">
-		<h1>TESTE</h1>
+		<h1>Cadastrar nova nota</h1>
 
 		Nome: <input class="form-control" id="nome" maxlength="10" type="text" /> 
 		Nota: <input class="form-control" id="nota" maxlength="5" type="number" />

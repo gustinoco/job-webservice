@@ -23,9 +23,14 @@ public class ApresentacaoService {
 		ApresentacaoResult result = new ApresentacaoResult();
 		TransactionStatus ts = new TransactionStatus();
 		try {
-			result.setApresentacoes(new ApresentacaoDao().getList(id));			
+			result.setApresentacoes(new ApresentacaoDao().getList(id));
+			if(result.getApresentacoes().getId() == null){
+				ts.setStatus(false);
+				ts.setDescricao("Não tem nada ai parça!");
+			}else{
 			ts.setStatus(true);
 			ts.setDescricao("Listou a pagina!");
+			}
 		} catch (Exception e) {
 			ts.setStatus(false);
 			ts.setDescricao("Listagem deu problema! "+e.getMessage());

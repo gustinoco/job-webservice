@@ -1,8 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <div class="main-div">
-	<button class="btn button" onclick="register()">Nova nota</button>
-	<button class="btn button btn-info" onclick="apresentacao()">Apresentação</button>
-
+<br><br><br>
+	<button class="btn button" style="width:30%"onclick="register()">Nova nota</button> 	
+	<br><br><br>
+	
 
 
 	<div class="">
@@ -17,11 +18,9 @@
 			</tbody>
 		</table>
 	</div>
+	</div>
 
-	<script>
-    function apresentacao() {
-      location = './Apresentacao';
-    }
+	<script>    
     
     
     function modelTable() {

@@ -1,8 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <div class="container">
-
-		<div id="miolo"></div>
+<br><br><br>
+		<div id="miolo" class="center"></div>
 
 
 
@@ -11,7 +11,7 @@
 			<a onclick="buscaAnterior()" class="btn btn-danger">Anterior</a>
 		</div>
 		<div class="input-group-btn">
-			<input class="form-control" value="1" id="input" style="width: 100px" />
+			<input class="form-control" value="1" id="input" style="width: 100px;text-align:center;" />
 		</div>
 		<div class="input-group-btn">
 			<a onclick="busca()" class="btn btn-success" id="proximo">Próximo</a>
@@ -25,33 +25,41 @@
 	$(document).ready(function() {
 		busca();
 		$("#botao").scrollToFixed({
-			bottom : 0
-		//fixa na parte inferior
+			bottom : 0		
 		});
 	});
+	
+	function buscaAnterior(){
+	  var pagina = $('#input').val();
+	  pagina = parseInt(pagina -1);
+	  $('#ap'+pagina).remove();
+	  $('#input').val(pagina);
+	}
 
 	function busca() {
 		var pagina = $('#input').val();
-		var finalSlide = 3;
-		if(parseInt(pagina) >0 && parseInt(pagina) <= finalSlide){
+		var finalSlide = 4;
+		if(parseInt(pagina) >0 && parseInt(pagina) < finalSlide){
 		$.ajax({
 			url : 'http://localhost:8080/API/Apresentacao/Get/' + pagina,
 			type : 'GET',
 			contentType : "application/json",
 			success : function(data) {
-				if (data.status) {
+				if (data.status.status) {
 					if(data.apresentacoes.imagem != ""){
-						$('#miolo').append('<div id"'+data.apresentacoes.id+'"><h2>'+data.apresentacoes.titulo+'</h2><br><h4>'+data.apresentacoes.descricao+'</h4><br><img src="'+data.apresentacoes.imagem+'"/>"</div>');	
+						$('#miolo').append('<div class="center" style="text-align: justify;" id="ap'+data.apresentacoes.id+'"><h1><b>'+data.apresentacoes.titulo+'</b></h1><br><h3>'+data.apresentacoes.descricao+'</h3><br><img src="<%=request.getContextPath()%>/resources/img/'+data.apresentacoes.imagem+'"/></div>');	
 					}else{
-					$('#miolo').append('<div id"'+data.apresentacoes.id+'"><h2>'+data.apresentacoes.titulo+'</h2><br><h4>'+data.apresentacoes.descricao+'</h4></div>');
+					$('#miolo').append('<div class="center" style="text-align: justify;" id="ap'+data.apresentacoes.id+'"><h1><b>'+data.apresentacoes.titulo+'</b></h1><br><h3>'+data.apresentacoes.descricao+'</h3></div>');
 					}
+					$('#input').val( parseInt(pagina) + 1 );
 				}
-				$('#input').val( parseInt(pagina) + 1 );
+				
 
 			}
 		});
 		}else{
 			$('#miolo').html('<h1>FIM</h1>');
+			$('#botao').hide();
 		}
 	}
 </script>
