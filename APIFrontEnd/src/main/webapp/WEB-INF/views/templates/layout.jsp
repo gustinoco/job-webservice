@@ -21,8 +21,7 @@
 	rel='stylesheet' type='text/css'></link>
 <script type="text/javascript" charset="utf8"
 	src="<%=request.getContextPath()%>/resources/js/jquery-2.2.0.js"></script>
-<script type="text/javascript" charset="utf8"
-	src="<%=request.getContextPath()%>/resources/js/jquery-ui-min.js"></script>
+
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/style.css"></link>
 
@@ -36,27 +35,16 @@
 	href="<%=request.getContextPath()%>/resources/css/datatables.css"></link>
 <script type="text/javascript" charset="utf8"
 	src="<%=request.getContextPath()%>/resources/js/datatables.min.js"></script>
-<script type="text/javascript" charset="utf8"
-	src="<%=request.getContextPath()%>/resources/js/moment.min.js"></script>
+
+	<script type="text/javascript" charset="utf8"
+	src="<%=request.getContextPath()%>/resources/js/scroll.js"></script>
 <!--requisito para ordenação por data -->
-<script type="text/javascript" charset="utf8"
-	src="<%=request.getContextPath()%>/resources/js/datetime-moment.js"></script>
+
 <!--Ordenar datas das tabelas datatable pt-br -->
 <script type="text/javascript" charset="utf8"
 	src="<%=request.getContextPath()%>/resources/js/datatable/FixedColumns.min.js"></script>
 <script type="text/javascript" charset="utf8"
 	src="<%=request.getContextPath()%>/resources/js/datatable/FixedColumns.js"></script>
-<script type="text/javascript" charset="utf8"
-	src="<%=request.getContextPath()%>/resources/js/jquery.mask.min.js"></script>
-
-
-
-<!-- New Alert -->
-<script type="text/javascript" charset="utf8"
-	src="<%=request.getContextPath()%>/resources/js/lib/newAlert.js"></script>
-<script type="text/javascript" charset="utf8"
-	src="<%=request.getContextPath()%>/resources/js/lib/newConfirm.js"></script>
-
 
 <!--Bootstrap-->
 <script type="text/javascript" charset="utf8"

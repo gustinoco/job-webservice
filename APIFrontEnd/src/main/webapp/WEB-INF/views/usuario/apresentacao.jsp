@@ -1,40 +1,57 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-	<div class="container">
-		
+<div class="container">
 
-		
-		
-		
-		<a href="./" id="add" class="btn">Voltar</a>
+		<div id="miolo"></div>
+
+
+
+	<div id="botao" class="input-group">
+		<div class="input-group-btn">
+			<a onclick="buscaAnterior()" class="btn btn-danger">Anterior</a>
+		</div>
+		<div class="input-group-btn">
+			<input class="form-control" value="1" id="input" style="width: 100px" />
+		</div>
+		<div class="input-group-btn">
+			<a onclick="busca()" class="btn btn-success" id="proximo">Próximo</a>
+		</div>
 	</div>
+	
+
+</div>
 
 <script>
-  function getJson() {
-    var nome = $('#nome').val();
-    var nota = $('#nota').val();
-    var values = {};
+	$(document).ready(function() {
+		busca();
+		$("#botao").scrollToFixed({
+			bottom : 0
+		//fixa na parte inferior
+		});
+	});
 
-    values['nome'] = nome;
-    values['nota'] = parseFloat(nota);
-    var json = JSON.stringify(values);
-    return json;
-  }
+	function busca() {
+		var pagina = $('#input').val();
+		var finalSlide = 3;
+		if(parseInt(pagina) >0 && parseInt(pagina) <= finalSlide){
+		$.ajax({
+			url : 'http://localhost:8080/API/Apresentacao/Get/' + pagina,
+			type : 'GET',
+			contentType : "application/json",
+			success : function(data) {
+				if (data.status) {
+					if(data.apresentacoes.imagem != ""){
+						$('#miolo').append('<div id"'+data.apresentacoes.id+'"><h2>'+data.apresentacoes.titulo+'</h2><br><h4>'+data.apresentacoes.descricao+'</h4><br><img src="'+data.apresentacoes.imagem+'"/>"</div>');	
+					}else{
+					$('#miolo').append('<div id"'+data.apresentacoes.id+'"><h2>'+data.apresentacoes.titulo+'</h2><br><h4>'+data.apresentacoes.descricao+'</h4></div>');
+					}
+				}
+				$('#input').val( parseInt(pagina) + 1 );
 
-  function insert() {
-    var json = getJson();
-    $.ajax({
-      url: 'http://192.168.25.103:8080/API/Usuario/Insert',
-      type: 'POST',      
-      dataType: 'json',
-      data: json,
-      contentType: "application/json",
-      success: function(data) {
-        if (data.status) {
-          alert("Mensagem do WebService: " + data.descricao);
-        }
-
-      }
-    });
-  }
+			}
+		});
+		}else{
+			$('#miolo').html('<h1>FIM</h1>');
+		}
+	}
 </script>

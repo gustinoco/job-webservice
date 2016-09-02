@@ -4,20 +4,7 @@
 	<button class="btn button btn-info" onclick="apresentacao()">Apresentação</button>
 
 
-	<ul id="nav">
-		<li id="notification_li"><span id="notification_count">1</span> <a
-			href="#" id="notificationLink">Notificações</a>
-			<div id="notificationContainer">
-				<div id="notificationTitle">Envios</div>
-				<div id="notificationsBody" class="notifications">
-					<p>Conteudo aqui</p>
 
-
-				</div>
-
-
-			</div></li>
-	</ul>
 	<div class="">
 		<table id="table" class="display">
 			<thead>
@@ -53,14 +40,17 @@
       });
     }
     
-    $(document).ready(
+    $(document).ready(function()
+    		{
            
-            $("#notificationLink").click(function ()
+            $(document).click(function ()
                     {
-                        $("#notificationContainer").fadeToggle(300);
-                        $("#notification_count").fadeOut("slow");
+            	$("#notificationContainer").fadeToggle(300);
+                       $("#notification_count").fadeOut("slow");
                         return false;
-                    });
+             });
+            
+            
 
                     $(document).click(function ()
                     {
@@ -75,7 +65,7 @@
             
 
               $.ajax({
-                url: "http://192.168.25.103:8080/API/Usuario/ListUsuario",
+                url: "http://localhost:8080/API/Usuario/ListUsuario",
                 type: "GET",
                 contentType: "application/json",
                 success: function(data) {
@@ -88,7 +78,6 @@
                     });
                     modelTable();
                   }
-
                 }
               });
             });
